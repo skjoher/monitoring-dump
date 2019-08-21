@@ -1,0 +1,162 @@
+
+USE master;
+GO
+CREATE LOGIN [telegraf] WITH PASSWORD = '******';
+GO
+GRANT VIEW SERVER STATE TO [telegraf];
+GO
+GRANT VIEW ANY DEFINITION TO [telegraf];
+GO
+
+
+
+7091
+10.1.1.111
+\\SQLEXPRESS
+
+# Read metrics from Microsoft SQL Server
+[[inputs.sqlserver]]
+  # Specify instances to monitor with a list of connection strings.
+  # All connection parameters are optional.
+  # By default, the host is localhost, listening on default port (TCP/1433)
+  #    for Windows, the user is the currently running AD user (SSO).
+  #    See https://github.com/denisenkom/go-mssqldb for detailed connection parameters.
+  servers = [
+    "Server=10.10.87.11;Port=1434;User Id=telegraf;Password=telegraf123;app name=telegraf;encrypt=disable;log=1;",
+    ]
+
+
+net start telegraf
+
+
+
+_________________________________________________________________________________________________________________
+Measurement | Fields:
+
+Wait stats
+Wait time (ms) | I/O, Latch, Lock, Network, Service broker, Memory, Buffer, CLR, XEvent, Other, Total
+Wait tasks | I/O, Latch, Lock, Network, Service broker, Memory, Buffer, CLR, XEvent, Other, Total
+Memory clerk
+Memory breakdown (%) | Buffer pool, Cache (objects), Cache (sql plans), Other
+Memory breakdown (bytes) | Buffer pool, Cache (objects), Cache (sql plans), Other
+Database size
+Log size (bytes) | databases (included sysdb)
+Rows size (bytes) | databases (included sysdb)
+Database IO
+Log writes (bytes/sec) | databases (included sysdb)
+Rows writes (bytes/sec) | databases (included sysdb)
+Log reads (bytes/sec) | databases (included sysdb)
+Rows reads (bytes/sec) | databases (included sysdb)
+Log (writes/sec) | databases (included sysdb)
+Rows (writes/sec) | databases (included sysdb)
+Log (reads/sec) | databases (included sysdb)
+Rows (reads/sec) | databases (included sysdb)
+Database latency
+Log read latency (ms) | databases (included sysdb)
+Log write latency (ms) | databases (included sysdb)
+Rows read latency (ms) | databases (included sysdb)
+Rows write latency (ms) | databases (included sysdb)
+Log (average bytes/read) | databases (included sysdb)
+Log (average bytes/write) | databases (included sysdb)
+Rows (average bytes/read) | databases (included sysdb)
+Rows (average bytes/write) | databases (included sysdb)
+Database properties
+Recovery Model FULL | databases (included sysdb)
+Recovery Model BULK_LOGGED | databases (included sysdb)
+Recovery Model SIMPLE | databases (included sysdb)
+State ONLINE | databases (included sysdb)
+State RESTORING | databases (included sysdb)
+State RECOVERING | databases (included sysdb)
+State RECOVERY_PENDING | databases (included sysdb)
+State SUSPECT | databases (included sysdb)
+State EMERGENCY | databases (included sysdb)
+State OFFLINE | databases (included sysdb)
+OS Volume
+Volume total space (bytes) | logical volumes
+Volume available space (bytes) | logical volumes
+Volume used space (bytes) | logical volumes
+Volume used space (%) | logical volumes
+CPU
+CPU (%) | SQL process, External process, SystemIdle
+Performance metrics
+Performance metrics | Point In Time Recovery, Available physical memory (bytes), Average pending disk IO, Average runnable tasks, Average tasks, Buffer pool rate (bytes/sec), Connection memory per connection (bytes), Memory grant pending, Page File Usage (%), Page lookup per batch request, Page split per batch request, Readahead per page read, Signal wait (%), Sql compilation per batch request, Sql recompilation per batch request, Total target memory ratio
+Performance counters
+AU cleanup batches/sec | Value
+... 1000+ metrics See https://msdn.microsoft.com/fr-fr/library/ms190382(v=sql.120).aspx
+Tags:
+
+All stats have the following tags:
+servername (server name:instance ID)
+type (type of stats to easily filter measurements)
+
+______________________________________________________________
+
+Lock Blocks Allocated | Memory Manager
+Lock Blocks | Memory Manager
+Lock Memory (KB) | Memory Manager
+Lock Owner Blocks Allocated | Memory Manager
+Lock Owner Blocks | Memory Manager
+Lock Requests/sec | AllocUnit | Locks
+Lock Requests/sec | Application | Locks
+Lock Requests/sec | Database | Locks
+Lock Requests/sec | Extent | Locks
+Lock Requests/sec | File | Locks
+Lock Requests/sec | HoBT | Locks
+Lock Requests/sec | Key | Locks
+Lock Requests/sec | Metadata | Locks
+Lock Requests/sec | Object | Locks
+Lock Requests/sec | Page | Locks
+Lock Requests/sec | RID | Locks
+Lock Requests/sec | _Total | Locks
+Lock Timeouts (timeout > 0)/sec | AllocUnit | Locks
+Lock Timeouts (timeout > 0)/sec | Application | Locks
+Lock Timeouts (timeout > 0)/sec | Database | Locks
+Lock Timeouts (timeout > 0)/sec | Extent | Locks
+Lock Timeouts (timeout > 0)/sec | File | Locks
+Lock Timeouts (timeout > 0)/sec | HoBT | Locks
+Lock Timeouts (timeout > 0)/sec | Key | Locks
+Lock Timeouts (timeout > 0)/sec | Metadata | Locks
+Lock Timeouts (timeout > 0)/sec | Object | Locks
+Lock Timeouts (timeout > 0)/sec | Page | Locks
+Lock Timeouts (timeout > 0)/sec | RID | Locks
+Lock Timeouts (timeout > 0)/sec | _Total | Locks
+Lock Timeouts/sec | AllocUnit | Locks
+Lock Timeouts/sec | Application | Locks
+Lock Timeouts/sec | Database | Locks
+Lock Timeouts/sec | Extent | Locks
+Lock Timeouts/sec | File | Locks
+Lock Timeouts/sec | HoBT | Locks
+Lock Timeouts/sec | Key | Locks
+Lock Timeouts/sec | Metadata | Locks
+Lock Timeouts/sec | Object | Locks
+Lock Timeouts/sec | Page | Locks
+Lock Timeouts/sec | RID | Locks
+Lock Timeouts/sec | _Total | Locks
+Lock Wait Time (ms) | AllocUnit | Locks
+Lock Wait Time (ms) | Application | Locks
+Lock Wait Time (ms) | Database | Locks
+Lock Wait Time (ms) | Extent | Locks
+Lock Wait Time (ms) | File | Locks
+Lock Wait Time (ms) | HoBT | Locks
+Lock Wait Time (ms) | Key | Locks
+Lock Wait Time (ms) | Metadata | Locks
+Lock Wait Time (ms) | Object | Locks
+Lock Wait Time (ms) | Page | Locks
+Lock Wait Time (ms) | RID | Locks
+Lock Wait Time (ms) | _Total | Locks
+Lock Waits/sec | AllocUnit | Locks
+Lock Waits/sec | Application | Locks
+Lock Waits/sec | Database | Locks
+Lock Waits/sec | Extent | Locks
+Lock Waits/sec | File | Locks
+Lock Waits/sec | HoBT | Locks
+Lock Waits/sec | Key | Locks
+Lock Waits/sec | Metadata | Locks
+Lock Waits/sec | Object | Locks
+Lock Waits/sec | Page | Locks
+Lock Waits/sec | RID | Locks
+Lock Waits/sec | _Total | Locks
+Lock waits | Average wait time (ms) | Wait Statistics
+Lock waits | Cumulative wait time (ms) per second | Wait Statistics
+Lock waits | Waits in progress | Wait Statistics
+Lock waits | Waits started per second | Wait Statistics

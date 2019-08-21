@@ -1,0 +1,23 @@
+
+<# : batch script
+@echo off
+setlocal
+cd %~dp0
+powershell -executionpolicy bypass -Command "Invoke-Expression $([System.IO.File]::ReadAllText('%~f0'))"
+endlocal
+goto:eof
+#>
+# here write your powershell commands...
+Get-ChildItem -Recurse 'C:\Users\appuser\AppData\Local\Temp' | Measure-Object -Property Length -Sum | ConvertTo-json
+
+
+************temp****************
+We will monitor temp directory size for following services-
+
+
+
+[[inputs.exec]]
+commands = ["powershell C:/ps1/temp_size.bat"]
+timeout = "10s"
+data_format = "json"
+name_suffix = "_temp"
