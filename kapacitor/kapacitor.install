@@ -1,0 +1,7 @@
+yum install kapacitor
+
+systemctl start kapacitor
+systemctl enable kapacitor
+
+or
+#download & and yum localinstall
