@@ -1,0 +1,101 @@
+#create User "admin" with pass 'admin' apply all privileges
+
+CREATE USER "admin" WITH PASSWORD '0x7f@influxdb' WITH ALL PRIVILEGES
+
+
+> show users
+user  admin
+----  -----
+admin true
+
+# Create database
+CREATE DATABASE telegraf_db
+
+
+> show databases
+name: databases
+name
+----
+_internal
+telegraf_db
+#############################################
+###for win
+CREATE USER "win_telegraf" WITH PASSWORD 'win_telegraf'
+CREATE DATABASE win_telegraf_db
+GRANT ALL ON "win_telegraf_db" TO "win_telegraf"
+SHOW GRANTS for win_telegraf
+CREATE RETENTION POLICY "rp_win" ON "win_telegraf_db" DURATION 90d REPLICATION 1 DEFAULT
+
+##for Linux
+CREATE USER "telegraf" WITH PASSWORD 'telegraf'
+CREATE DATABASE telegraf_db
+GRANT ALL ON "telegraf_db" TO "telegraf"
+SHOW GRANTS for telegraf
+CREATE RETENTION POLICY "rp_main" ON "telegraf_db" DURATION 90d REPLICATION 1 DEFAULT
+SHOW RETENTION POLICIES ON telegraf_db
+
+
+
+#############################################
+###for (internal) monitoring server
+CREATE DATABASE internal_db
+GRANT ALL ON "internal_db" TO "telegraf"
+SHOW GRANTS for telegraf
+
+
+##########################
+CREATE RETENTION POLICY "rp_solr" ON "solr_db" DURATION 90d REPLICATION 1 DEFAULT
+
+CREATE USER "solr" WITH PASSWORD 'solr'
+CREATE DATABASE solr_db
+GRANT ALL ON "solr_db" TO "solr"
+SHOW GRANTS for solr
+SHOW RETENTION POLICIES ON solr_db
+
+########################################
+#########################################
+
+
+
+CREATE USER "solr" WITH PASSWORD 'solr'
+CREATE DATABASE solr_db
+GRANT ALL ON "solr_db" TO "solr"
+SHOW GRANTS for solr
+
+CREATE RETENTION POLICY "rp_solr" ON "solr_db" DURATION 90d REPLICATION 1 DEFAULT
+SHOW RETENTION POLICIES ON solr_db
+
+
+________________________________________________________________________________
+Production:
+Data Source name - solr_db_prd
+User name - solr_prd
+--------------------
+CREATE DATABASE solr_db_prd
+CREATE USER "solr_prd" WITH PASSWORD 'solr_prd'
+GRANT ALL ON "solr_db_prd" TO "solr_prd"
+SHOW GRANTS for solr_prd
+CREATE RETENTION POLICY "rp_solr_prd" ON "solr_db_prd" DURATION 90d REPLICATION 1 DEFAULT
+SHOW RETENTION POLICIES ON solr_db_prd
+________________________________________________________________________________
+Beta:
+Data Source name - solr_db_beta
+User name - solr_beta
+---------------------
+CREATE DATABASE solr_db_beta
+CREATE USER "solr_beta" WITH PASSWORD 'solr_beta'
+GRANT ALL ON "solr_db_beta" TO "solr_beta"
+SHOW GRANTS for solr_beta
+CREATE RETENTION POLICY "rp_solr_beta" ON "solr_db_beta" DURATION 90d REPLICATION 1 DEFAULT
+SHOW RETENTION POLICIES ON solr_db_beta
+________________________________________________________________________________
+Staging:
+Data Source name - solr_db_stg
+User name - solr_stg
+--------------------
+CREATE DATABASE solr_db_stg
+CREATE USER "solr_stg" WITH PASSWORD 'solr_stg'
+GRANT ALL ON "solr_db_stg" TO "solr_stg"
+SHOW GRANTS for solr_stg
+CREATE RETENTION POLICY "rp_solr_stg" ON "solr_db_stg" DURATION 90d REPLICATION 1 DEFAULT
+SHOW RETENTION POLICIES ON solr_db_stg
