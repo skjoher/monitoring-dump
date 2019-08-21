@@ -1,0 +1,137 @@
+{
+  "servers" : [ {
+    "port" : "9999",
+    "host" : "10.1.1.51",
+    "queries" : [ {
+      "obj" : "java.lang:type=Memory",
+      "attr" : [ "HeapMemoryUsage", "NonHeapMemoryUsage" ],
+      "resultAlias":"jvmMemory",
+      "outputWriters" : [ {
+        "@class" : "com.googlecode.jmxtrans.model.output.InfluxDbWriterFactory",
+        "url" : "http://localhost:8086/",
+        "username" : "admin",
+        "password" : "0x7f@influxdb",
+	"retentionPolicy":"rp_jmx",
+        "database" : "jmx_db"
+      } ]
+    },
+    {
+  "obj" : "java.lang:type=ClassLoading",
+  "attr" : [ "TotalLoadedClassCount", "LoadedClassCount", "UnloadedClassCount" ],
+  "resultAlias": "classload",
+  "outputWriters" : [ {
+    "@class" : "com.googlecode.jmxtrans.model.output.InfluxDbWriterFactory",
+    "url" : "http://localhost:8086/",
+    "username" : "admin",
+    "password" : "0x7f@influxdb",
+    "retentionPolicy":"rp_jmx",
+    "database" : "jmx_db"
+    } ]
+   },
+    {
+      "obj" : "java.lang:name=CMS Old Gen,type=MemoryPool",
+      "attr" : [ "Usage" ],
+      "resultAlias": "cmsoldgen",
+      "outputWriters" : [ {
+        "@class" : "com.googlecode.jmxtrans.model.output.InfluxDbWriterFactory",
+        "url" : "http://localhost:8086/",
+        "username" : "admin",
+        "password" : "0x7f@influxdb",
+	"retentionPolicy":"rp_jmx",
+        "database" : "jmx_db"
+      } ]
+    },
+    {
+      "obj" : "java.lang:type=Runtime",
+      "attr" : [ "Uptime", "StartTime" ],
+      "resultAlias": "uptime",
+      "outputWriters" : [ {
+        "@class" : "com.googlecode.jmxtrans.model.output.InfluxDbWriterFactory",
+        "url" : "http://localhost:8086/",
+        "username" : "admin",
+        "password" : "0x7f@influxdb",
+	"retentionPolicy":"rp_jmx",
+        "database" : "jmx_db"
+      } ]
+    },
+    {
+      "obj" : "java.lang:type=GarbageCollector,name=*",
+      "attr" : [ "CollectionCount", "CollectionTime" ],
+      "resultAlias": "gc",
+      "outputWriters" : [ {
+        "@class" : "com.googlecode.jmxtrans.model.output.InfluxDbWriterFactory",
+        "url" : "http://localhost:8086/",
+        "username" : "admin",
+        "password" : "0x7f@influxdb",
+	"retentionPolicy":"rp_jmx",
+        "database" : "jmx_db"
+      } ]
+    },
+    {
+      "obj" : "java.lang:type=Threading",
+      "attr" : [ "DaemonThreadCount", "PeakThreadCount", "ThreadCount", "TotalStartedThreadCount" ],
+      "resultAlias": "threads",
+      "outputWriters" : [ {
+        "@class" : "com.googlecode.jmxtrans.model.output.InfluxDbWriterFactory",
+        "url" : "http://localhost:8086/",
+        "username" : "admin",
+        "password" : "0x7f@influxdb",
+	"retentionPolicy":"rp_jmx",
+        "database" : "jmx_db"
+      } ]
+    },
+    {
+      "obj" : "java.lang:type=MemoryPool,name=*",
+      "attr" : [ "Usage" ],
+      "resultAlias": "memorypool",
+      "outputWriters" : [ {
+        "@class" : "com.googlecode.jmxtrans.model.output.InfluxDbWriterFactory",
+        "url" : "http://localhost:8086/",
+        "username" : "admin",
+        "password" : "0x7f@influxdb",
+	"retentionPolicy":"rp_jmx",
+        "database" : "jmx_db"
+      } ]
+    },
+    {
+      "obj" : "Catalina:type=ThreadPool,name=*",
+      "attr" : [ "currentThreadCount", "currentThreadsBusy" ],
+      "resultAlias": "tomcat8-connectors",
+      "outputWriters" : [ {
+        "@class" : "com.googlecode.jmxtrans.model.output.InfluxDbWriterFactory",
+        "url" : "http://localhost:8086/",
+        "username" : "admin",
+        "password" : "0x7f@influxdb",
+	"retentionPolicy":"rp_jmx",
+        "database" : "jmx_db"
+      } ]
+    },
+    {
+      "obj" : "Catalina:type=GlobalRequestProcessor,name=*",
+      "attr" : [ "bytesReceived", "bytesSent", "errorCount", "processingTime", "requestCount" ],
+      "resultAlias": "tomcat8-requests",
+      "outputWriters" : [ {
+        "@class" : "com.googlecode.jmxtrans.model.output.InfluxDbWriterFactory",
+        "url" : "http://localhost:8086/",
+        "username" : "admin",
+        "password" : "0x7f@influxdb",
+	"retentionPolicy":"rp_jmx",
+        "database" : "jmx_db"
+      } ]
+    },
+    {
+      "obj" : "java.lang:type=OperatingSystem",
+      "attr" : [ "SystemLoadAverage", "AvailableProcessors", "ProcessCpuLoad", "SystemCpuLoad", "TotalPhysicalMemorySize", "FreePhysicalMemorySize", "TotalSwapSpaceSize", "FreeSwapSpaceSize", "OpenFileDescriptorCount", "MaxFileDescriptorCount" ],
+      "resultAlias": "OperatingSystem",
+      "outputWriters" : [ {
+        "@class" : "com.googlecode.jmxtrans.model.output.InfluxDbWriterFactory",
+        "url" : "http://localhost:8086/",
+        "username" : "admin",
+        "password" : "0x7f@influxdb",
+	"retentionPolicy":"rp_jmx",
+        "database" : "jmx_db"
+      } ]
+    }  ]
+  } ]
+}
+

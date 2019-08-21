@@ -1,0 +1,17 @@
+[Unit]
+Description=JMX Transformer - more than meets the eye
+After=syslog.target network.target
+
+[Service]
+Type=forking
+User=jmxtrans
+Group=jmxtrans
+# Run ExecStartPre with root-permissions
+PermissionsStartOnly=true
+ExecStartPre=-/usr/bin/mkdir /run/jmxtrans/
+ExecStartPre=/usr/bin/chown -R jmxtrans:jmxtrans /run/jmxtrans/
+PIDFile=/var/run/jmxtrans/jmxtrans.pid
+ExecStart=/usr/share/jmxtrans/bin/jmxtrans start
+
+[Install]
+WantedBy=multi-user.target
