@@ -1,0 +1,22 @@
+#install mariadb
+yum install mariadb mariadb-server -y
+
+#mysql used by grafana for user management
+
+id: root
+pass : 0x7f@mariadb
+
+#Configure sessions mysql
+
+MariaDB [(none)]> CREATE DATABASE grafana;
+Query OK, 1 row affected (0.00 sec)
+
+MariaDB [(none)]> use grafana;
+Database changed
+
+CREATE TABLE `session` (
+    `key`       CHAR(16) NOT NULL,
+    `data`      BLOB,
+    `expiry`    INT(11) UNSIGNED NOT NULL,
+    PRIMARY KEY (`key`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
