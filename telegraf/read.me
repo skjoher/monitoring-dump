@@ -1,0 +1,140 @@
+Telegraf: https://github.com/influxdata/telegraf
+
+https://github.com/influxdata/telegraf/blob/master/docs/WINDOWS_SERVICE.md
+
+Telegraf is an agent written in Go for collecting, processing, aggregating, and writing metrics.
+
+Design goals are to have a minimal memory footprint with a plugin system so that developers in the community can easily add support for collecting metrics from well known services (like Hadoop, Postgres, or Redis) and third party APIs (like Mailchimp, AWS CloudWatch, or Google Analytics).
+
+Telegraf is plugin-driven and has the concept of 4 distinct plugins:
+
+*Input Plugins collect metrics from the system, services, or 3rd party APIs
+*Processor Plugins transform, decorate, and/or filter metrics
+*Aggregator Plugins create aggregate metrics (e.g. mean, min, max, quantiles, etc.)
+*Output Plugins write metrics to various destinations
+
+#Input Plugins :
+aerospike
+amqp_consumer (rabbitmq)
+apache
+aws cloudwatch
+bcache
+cassandra
+ceph
+cgroup
+chrony
+consul
+conntrack
+couchbase
+couchdb
+disque
+dns query time
+docker
+dovecot
+elasticsearch
+exec (generic executable plugin, support JSON, influx, graphite and nagios)
+filestat
+haproxy
+hddtemp
+http_response
+httpjson (generic JSON-emitting http service plugin)
+internal
+influxdb
+ipmi_sensor
+iptables
+jolokia
+kubernetes
+leofs
+lustre2
+mailchimp
+memcached
+mesos
+mongodb
+mysql
+net_response
+nginx
+nsq
+nstat
+ntpq
+phpfpm
+phusion passenger
+ping
+postgresql
+postgresql_extensible
+powerdns
+procstat
+prometheus
+puppetagent
+rabbitmq
+raindrops
+redis
+rethinkdb
+riak
+sensors
+snmp
+snmp_legacy
+sql server (microsoft)
+twemproxy
+varnish
+zfs
+zookeeper
+win_perf_counters (windows performance counters)
+sysstat
+system
+cpu
+mem
+net
+netstat
+disk
+diskio
+swap
+processes
+kernel (/proc/stat)
+kernel (/proc/vmstat)
+linux_sysctl_fs (/proc/sys/fs)
+Telegraf can also collect metrics via the following service plugins:
+
+http_listener
+kafka_consumer
+mqtt_consumer
+nats_consumer
+nsq_consumer
+logparser
+statsd
+socket_listener
+tail
+tcp_listener
+udp_listener
+webhooks
+filestack
+github
+mandrill
+rollbar
+
+
+#Output Plugins
+
+influxdb
+amon
+amqp (rabbitmq)
+aws kinesis
+aws cloudwatch
+datadog
+discard
+elasticsearch
+file
+graphite
+graylog
+instrumental
+kafka
+librato
+mqtt
+nats
+nsq
+opentsdb
+prometheus
+riemann
+riemann_legacy
+socket_writer
+tcp
+udp

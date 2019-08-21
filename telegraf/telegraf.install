@@ -1,0 +1,16 @@
+yum install telegraf
+
+or
+#download & and yum localinstall
+
+wget https://dl.influxdata.com/telegraf/releases/telegraf-1.2.1.x86_64.rpm
+
+yum localinstall telegraf-1.2.1.x86_64.rpm
+
+systemctl start telegraf
+systemctl enable telegraf
+chkconfig telegraf on
+
+systemctl start kapacitor
+systemctl enable kapacitor
+chkconfig kapacitor on
