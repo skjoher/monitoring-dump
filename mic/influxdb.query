@@ -1,0 +1,50 @@
+#influxDB Query
+EX:
+#show database names
+show databases
+##########################
+#show series information
+show series
+##########################
+#show measurement information
+show measurements
+##########################
+#show tag key information
+show tag keys
+##########################
+#show field key information
+show field keys
+
+##########################
+SHOW FIELD KEYS from "cpu"
+> SHOW FIELD KEYS from "cpu"
+name: cpu
+fieldKey         fieldType
+--------         ---------
+usage_guest      float
+usage_guest_nice float
+usage_idle       float
+usage_iowait     float
+usage_irq        float
+usage_nice       float
+usage_softirq    float
+usage_steal      float
+usage_system     float
+usage_user       float
+time_guest       float
+time_guest_nice  float
+time_idle        float
+time_iowait      float
+time_irq         float
+time_nice        float
+time_softirq     float
+time_steal       float
+time_system      float
+time_user        float
+##########################
+#show all host in the database
+> SHOW TAG VALUES WITH KEY = "host"
+##########################
+#show * from measurements  N0te: do not forget to add LIMIT
+SELECT * FROM "OperatingSystem" LIMIT 5
+##########################

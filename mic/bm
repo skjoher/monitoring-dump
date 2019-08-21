@@ -1,0 +1,20 @@
+#CPU BM
+for i in {1..2}; do { while true; do i=0 ; done & }; done
+
+Memory:
+stress --vm 3 --vm-bytes 256M --timeout 5m --verbose
+
+or
+
+stress --vm-bytes $(awk '/MemFree/{printf "%d\n", $2 * 0.9;}' < /proc/meminfo)k --vm-keep -m 1
+
+CPU:
+sysbench --test=cpu --cpu-max-prime=200000 run
+for i in {1..2}; do { while true; do i=0 ; done & }; done
+
+Redis:
+redis-benchmark -t set -r 100000 -n 1000000
+
+Disk:
+fallocate -l 1G disk/disk2.img   #create a .img with 1G size
+df -h    #disk used %
