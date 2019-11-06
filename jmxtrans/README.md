@@ -8,6 +8,8 @@ jmxtrans is a tool which allows you to connect to any number of Java Virtual Mac
 
 The query language is based on the easy to write JSON format. This allows non-programmers access to JMX without having to know how to write Java. 
 
+```sh
+
 history | grep jmxtrans
 cd /var/lib/jmxtrans/
 cp tomcat.10.1.1.50.json /root/tomcat.10.1.1.132.json
@@ -16,3 +18,4 @@ vi /root/tomcat.10.1.1.132.json
 cp /root/tomcat.10.1.1.132.json /var/lib/jmxtrans
 tailf /var/log/jmxtrans/jmxtrans.log
 
+```
