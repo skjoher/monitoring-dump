@@ -9,7 +9,8 @@ kapacitord – the Kapacitor server daemon.
 Kapacitor use a DSL named TICKscript to define tasks.
 
 #A simple TICKscript that alerts on high cpu usage looks like this:
-'''
+
+```sh
 stream
     |from()
         .measurement('cpu_usage_idle')
@@ -31,24 +32,33 @@ stream
         .slack()
         .channel('#alerts')
 
-
-'''
+```
 
 #save into a file cpu_alert.tick
+
 #Define the task
+
+```sh
 kapacitor define \            #define
     cpu_alert \               # name of the alert
     -type stream \            # type batch or stream
     -dbrp telegraf.default \  #database retentionPolicy
     -tick ./cpu_alert.tick    #.tick file with full path
+```
+#start the task
 
-# Start the task
-  kapacitor enable cpu_alert
-
+```sh
+kapacitor enable cpu_alert
+```
 #show the task
+
+```sh
 kapacitor show cpu_alert
+```
 
 #list all tasks
+
+```sh
 [root@monitor ~]# kapacitor list tasks
 ID                     Type      Status    Executing Databases and Retention Policies
 cpu_stream_1           stream    enabled   true      ["telegraf_db"."autogen"]
@@ -58,3 +68,4 @@ mysql_max_conn_1       stream    enabled   true      ["telegraf_db"."autogen"]
 rabbit_mem_used_1      stream    enabled   true      ["telegraf_db"."autogen"]
 redis_mem_used_1       stream    enabled   true      ["telegraf_db"."autogen"]
 tomcat_threads_count_1 stream    enabled   true      ["jmx_db"."autogen"]
+```
